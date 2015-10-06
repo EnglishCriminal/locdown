@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>locdown</title>
+        <script src="loc_stats.js"></script>
+        <script src="assets/jquery.min.js"></script>
+        <script src="assets/chartist.min.js"></script>
+        <style>
+            body{
+              background: #4D4D4D;
+              color: #d78000;
+            }
+            .ct-series-a .ct-line {
+              stroke: red;
+              stroke-width: 1px;
+              stroke-dasharray: 5px 5px;
+            }
+
+            .ct-series-a .ct-point {
+              stroke-width: 5px;
+            }
+        </style>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="assets/chartist.min.css" />
+        <script type="text/javascript">
+            $(function(){
+                'use strict';
+                var labels = []
+                var series = []
+                for (var i in loc_stats){
+                    labels.push(loc_stats[i].tag)
+                    series.push(loc_stats[i].loc)
+                }
+                var data = {
+                    labels : labels,
+                    series : [series]
+                };
+
+                var options = {
+
+                  showPoint: true,
+                  lineSmooth: false,
+                  axisX: {
+                    offset : 50,
+                    showGrid: false,
+                    showLabel: true,
+                    labelInterpolationFnc: function(label) {
+                      var output = "";
+                      for (var x = 0; x < label.length; x++){
+                          if (label[x] != ".") {
+                              output = output + label[x] + "<br />";
+                          }
+                      }
+                      return '<b>'+output+'</b>';
+                    }
+                  },
+                  axisY: {
+                    offset: 50,
+                    showGrid : false,
+                    labelInterpolationFnc: function(value) {
+                      return '<b>'+value+'</b>'
+                    }
+                  }
+                };
+                new Chartist.Line('.ct-chart', data, options);
+        });
+        </script>
+    </head>
+    <body>
+        <pre>
+               ___                      __
+              /\_ \                    /\ \
+              \//\ \     ___     ___   \_\ \    ___   __  __  __    ___
+                \ \ \   / __`\  /'___\ /'_` \  / __`\/\ \/\ \/\ \ /' _ `\
+                 \_\ \_/\ \L\ \/\ \__//\ \L\ \/\ \L\ \ \ \_/ \_/ \/\ \/\ \
+                 /\____\ \____/\ \____\ \___,_\ \____/\ \___x___/'\ \_\ \_\
+                 \/____/\/___/  \/____/\/__,_ /\/___/  \/__//__/   \/_/\/_/
+
+        </pre>
+        <div class='ct-chart ct-minor-seventh'></div>
+    </body>
+</html>
