@@ -15,7 +15,7 @@
 # ==============================================================
 rm loc_stats.js 2>/dev/null
 echo "loc_stats = [" >> loc_stats.js
-TAG_OUTPUT=`cd $1 && git tag`
+TAG_OUTPUT=`cd $1 && git tag --sort version:refname`
 read -a TAG_ARRAY <<<$TAG_OUTPUT
 for TAG in "${TAG_ARRAY[@]}"
 do
