@@ -7,18 +7,32 @@
         <script src="assets/chartist.min.js"></script>
         <style>
             body{
-              background: #FFF8E0;
-              color: #FF3333;
+              background: #453D3F;
+              color: #EADBC4;
+            }
+            .ct-chart{
+                background: #453D3F;
             }
             .ct-series-a .ct-line {
+              font-size: .85em;
               stroke: #FF3333;
               stroke-width: 1px;
               stroke-dasharray: 5px 5px;
+              padding: 10px;
             }
 
             .ct-series-a .ct-point {
               stroke-width: 10px;
               stroke: #FF3333;
+              padding: 10px;
+            }
+            .ct-label b{
+                font-size: 1.25em;
+                color: #EADBC4;
+                margin-top: -20px;
+            }
+            .ct-labels{
+                margin: 100px;
             }
         </style>
 
@@ -26,11 +40,11 @@
         <script type="text/javascript">
             $(function(){
                 'use strict';
-                var labels = []
-                var series = []
+                var labels = [];
+                var series = [];
                 for (var i in loc_stats){
-                    labels.push(loc_stats[i].tag)
-                    series.push(loc_stats[i].loc)
+                    labels.push(loc_stats[i].tag);
+                    series.push(loc_stats[i].loc);
                 }
                 var data = {
                     labels : labels,
@@ -47,8 +61,8 @@
                     showLabel: true,
                     labelInterpolationFnc: function(label) {
                       var output = "";
-                      for (var x = 0; x < label.length; x++){
-                          if (label[x] != ".") {
+                      for (var x = 1; x < label.length; x++){
+                          if (label[x] != "." && label[x] != "-" ) {
                               output = output + label[x] + "<br />";
                           }
                       }
