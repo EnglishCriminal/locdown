@@ -2,8 +2,7 @@
 Chart loc over time using build tags, useful if you are trying to reduce your codebase.
 
 # requirements
-nix env w/ git, xargs, wc
-A repo that uses build tabs
+Nix env w/ git, xargs, wc, modern web browser and a repo that uses build tags.
 
 # usage
 ```
